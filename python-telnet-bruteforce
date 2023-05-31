@@ -1,7 +1,9 @@
 #! /usr/bin/python3
 
 """Why capture credentials in the clear when you could do it the hard way? With some slight modifications, this script could be used to brute force other
-password based protocols like FTP."""
+password based protocols like FTP.
+These bash and python scrips are for educational use only. Always follow the laws of your region. The author is not responsible for their use.
+"""
 
 
 import telnetlib
